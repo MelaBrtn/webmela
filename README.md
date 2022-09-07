@@ -1,1 +1,5 @@
 # webmela
+DESCRIPTION PROJET: 
+  Création site web 
+ENVIRONNEMENT:
+  IDE: VISUAL STUDIO
