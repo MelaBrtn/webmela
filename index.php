@@ -22,6 +22,7 @@
                 <a href="inscrire.php">S'inscrire</a>
                 <?php
                 // Code de vérification 
+            
                 ?>
             </form>
         </div>
