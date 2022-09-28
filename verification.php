@@ -12,14 +12,14 @@
         $recupUsername = $_POST['username'];
         $recupPassword = $_POST['password'];
 
-        $req = $bdd->prepare('SELECT Login, MotDePasse FROM utilisateur');
+        $req = $bdd->prepare"SELECT Login, MotDePasse FROM utilisateur WHERE Login = '".$Login"' AND mdp = '".$MotDePasse"'";
         $req->execute(array(
             'username' => $recupUsername,
             'password' => $recupPassword));
         
         $resultat = $req->fetch();
         
-        if (!$req)
+        if (!$req==0)
         {
             header('Location: inscrire.php');
         }
