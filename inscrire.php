@@ -14,6 +14,6 @@
             <input type="password" name ="password" required>
             <label>Adresse email</label>
             <input type="mail" placeholder="Entrez votre email" name="mail" required>
-</form>
+    </form>
 
-</body>
+    </body>
