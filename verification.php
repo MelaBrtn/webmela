@@ -23,7 +23,7 @@
         {
             header('Location: inscrire.php');
         }
-        elseif(!req)
+        elseif(!$req)
         {
         
             echo 'Vous êtes connecté !';
