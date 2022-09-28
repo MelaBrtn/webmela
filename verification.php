@@ -1,12 +1,4 @@
-<html>
-    <head>
-       <meta charset="utf-8">
-        <!-- importer le fichier de style -->
-        <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
-    </head>
-    <body>
-
-        <?php   
+<?php   
         $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
 
         $recupUsername = $_POST['username'];
@@ -28,3 +20,4 @@
         
             echo 'Vous êtes connecté !';
         }
+?>
