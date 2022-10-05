@@ -21,6 +21,8 @@
             <input type="mail" placeholder="Entrer votre email" name="mail" required>
 
             <input type="submit" id='submit' value='Inscription' >
+
+            <a href="index.php">Retour à la connexion</a>
         </form>
     </div>
 
