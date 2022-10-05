@@ -18,6 +18,6 @@
         elseif(!$req)
         {
         
-            echo 'Vous êtes connecté !';
+            header('Location: confirmation.php');
         }
 ?>
