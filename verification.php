@@ -31,5 +31,6 @@ if(isset($_POST['username']) && isset($_POST['password']))
         {
           header('Location: inscrire.php');
         }
+}
 mysqli_close($db); // fermer la connexion
 ?>
