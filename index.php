@@ -22,7 +22,11 @@
                 <a href="inscrire.php">S'inscrire</a>
                 <?php
                 // Code de vérification 
-            
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2)
+                        echo "Utilisateur ou mot de passe incorrect";
+                }
                 ?>
             </form>
         </div>
