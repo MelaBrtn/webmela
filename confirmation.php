@@ -6,7 +6,14 @@
     </head>
     <body>
         <div id="container">
-            <h1> Si vous voyez ce message c'est que vous êtes connecté<h1>
+        <?php
+                session_start();
+                if($_SESSION['username'] !== ""){
+                    $user = $_SESSION['username'];
+                    // afficher un message
+                    echo "Bonjour $user, vous êtes connecté";
+                }
+            ?>
         </div>
     </body>
 </html>
