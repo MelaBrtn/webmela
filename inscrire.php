@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
     </head>
     <body>
+    <div id="container">
         <form name="inscription" method="post" action="">
             <label>Pseudo</label>
             <input type="text" placeholder="Mettre votre pseudo" name="pseudo" required>
@@ -15,5 +16,6 @@
             <label>Adresse email</label>
             <input type="mail" placeholder="Entrez votre email" name="mail" required>
     </form>
+</div>
 
     </body>
