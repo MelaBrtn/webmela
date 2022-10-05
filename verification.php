@@ -1,36 +1,23 @@
-<?php
-session_start();
-if(isset($_POST['username']) && isset($_POST['password']))
-{
-    // connexion à la base de données
-    $db_username = 'root';
-    $db_password = '';
-    $db_name     = 'tpslam3versioning-mb';
-    $db_host     = '127.0.0.1';
-    $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
-           or die('could not connect to database');   
+<?php   
+        $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
 
-           if($username !== "" && $password !== "")
-           {
-               $requete = "SELECT count(*) FROM utilisateur where 
-                     Login = '".$username."' AND MotDePasse = '".$password."' ";
-               $exec_requete = mysqli_query($db,$requete);
-               $reponse      = mysqli_fetch_array($exec_requete);
-               $count = $reponse['count(*)'];
-               if($count!=0) // nom d'utilisateur et mot de passe correctes
-                {
-                $_SESSION['username'] = $username;
-                header('Location: confirmation.php');
-                }
-                else
+        $recupUsername = $_POST['username'];
+        $recupPassword = $_POST['password'];
+
+        $req = $bdd->prepare"SELECT Login, MotDePasse FROM utilisateur WHERE Login = '".$username"' AND MotDePasse = '".$MotDePasse"'";
+        $req->execute(array(
+            'username' => $recupUsername,
+            'password' => $recupPassword));
+        
+        $resultat = $req->fetch();
+        
+        if (!$req==0)
         {
-           header('Location: index.php?erreur=1'); // utilisateur ou mot de passe incorrect
+            header('Location: inscrire.php');
         }
-    }
-    else
+        elseif(!$req)
         {
-          header('Location: inscrire.php');
+        
+            header('Location: confirmation.php');
         }
-}
-mysqli_close($db); // fermer la connexion
 ?>
