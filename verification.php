@@ -4,7 +4,7 @@
         $recupUsername = $_POST['username'];
         $recupPassword = $_POST['password'];
 
-        $req = $bdd->prepare"SELECT Login, MotDePasse FROM utilisateur WHERE Login = '".$username"' AND MotDePasse = '".$MotDePasse"'";
+        $req = $bdd->prepare"SELECT Login, MotDePasse FROM utilisateur WHERE Login = '".$recupUsername"' AND MotDePasse = '".$recupPassword"' ";
         $req->execute(array(
             'username' => $recupUsername,
             'password' => $recupPassword));
@@ -15,7 +15,7 @@
         {
             header('Location: inscrire.php');
         }
-        elseif(!$req)
+        else(!$req)
         {
         
             header('Location: confirmation.php');
