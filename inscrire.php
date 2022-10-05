@@ -11,10 +11,11 @@
             <input type="text" placeholder="Mettre votre pseudo" name="pseudo" required>
             <label>Mot de passe</label>
             <input type="password" placeholder="Entre votre mot de passe" name="password" required>
-            <label>Retapez votre mot de passe</label>
+            <label>Confirmation de mot de passe</label>
             <input type="password" name ="password" required>
-            <label>Adresse email</label>
+            <label>Adresse email</label><br>
             <input type="mail" placeholder="Entrez votre email" name="mail" required>
+            <input type="submit" id='submit' value='Inscription' >
     </form>
 </div>
 
