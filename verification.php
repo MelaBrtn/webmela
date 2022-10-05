@@ -28,13 +28,8 @@ if(isset($_POST['username']) && isset($_POST['password']))
         }
     }
     else
-    {
-       header('Location: index.php?erreur=2'); // utilisateur ou mot de passe vide
-    }
-}
-else
-{
-   header('Location: inscrire.php');
-}
+        {
+          header('Location: inscrire.php');
+        }
 mysqli_close($db); // fermer la connexion
 ?>
