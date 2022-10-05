@@ -4,20 +4,14 @@
         $recupUsername = $_POST['username'];
         $recupPassword = $_POST['password'];
 
-        $req = $bdd->prepare"SELECT Login, MotDePasse FROM utilisateur WHERE Login = '".$recupUsername"' AND MotDePasse = '".$recupPassword"' ";
-        $req->execute(array(
-            'username' => $recupUsername,
-            'password' => $recupPassword));
-        
-        $resultat = $req->fetch();
-        
-        if (!$req==0)
-        {
-            header('Location: inscrire.php');
-        }
-        else(!$req)
-        {
-        
-            header('Location: confirmation.php');
-        }
+        $stmt = $this->pdo->prepare('SELECT * FROM utilisateur WHERE Login = ? LIMIT 1');
+        $stmt->execute([$recupUsername]);
+        $recupUsername = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (password_verify($recupPassword, $recupUsername['password'])) {
+            return header('location: confirmation.php');
+        } 
+        else {
+            return header('Location: inscrire.php');
+            }
 ?>
