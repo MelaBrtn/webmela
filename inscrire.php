@@ -35,7 +35,7 @@
                     $q = $bdd->prepare('INSERT INTO utilisateur (Login, MotDePasse) VALUES (:pseudo, :password)');
                     $q->bindValue('Login', $pseudo);
                     $q->bindValue('MotDePasse', $password);
-                    $res = $q->execute();
+                    $res = execute($q);
                 
                     if ($res) {
                         echo "Inscription réussie";
