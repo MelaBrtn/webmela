@@ -8,14 +8,15 @@
         <div id="container">
         <?php
                 session_start();
-                if($_SESSION['username'] !== ""){
-                    $username = $_SESSION['username'];
+                if($_SESSION['Login'] !== ""){
+                    $recupUsername = $_SESSION['Login'];
                     // afficher un message
-                    echo "Bonjour $username, vous êtes connecté";
+                    echo "Bonjour $recupUsername, vous êtes connecté";
                 }
-            ?>
+            ?></br>
+            <a href="deconnexion.php">Déconnexion</a>
         </div>
 
-        <a href="index.php">Déconnexion</a>
+        
     </body>
 </html>
