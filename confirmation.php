@@ -8,8 +8,8 @@
         <div id="container">
         <?php
                 session_start();
-                if($_SESSION['Login'] !== ""){
-                    $recupUsername = $_SESSION['Login'];
+                if($_SESSION['username'] !== ""){
+                    $recupUsername = $_SESSION['username'];
                     // afficher un message
                     echo "Bonjour $recupUsername, vous êtes connecté";
                 }
