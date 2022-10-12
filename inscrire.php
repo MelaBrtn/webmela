@@ -22,6 +22,27 @@
 
             <input type="submit" id='submit' value='Inscription' >
 
+            <?php
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
+                
+                if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                    $pseudo = $_POST['pseudo'];
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                
+                   // var_dump($pseudo);
+                    //var_dump($password);
+                
+                    $q = $bdd->prepare('INSERT INTO utilisateur (Login, MotDePasse) VALUES (:pseudo, :password)');
+                    $q->bindValue('Login', $pseudo);
+                    $q->bindValue('MotDePasse', $password);
+                    $res = $q->execute();
+                
+                    if ($res) {
+                        echo "Inscription réussie";
+                    }
+                }
+            ?>
+
             <a href="index.php">Retour à la connexion</a>
         </form>
     </div>
