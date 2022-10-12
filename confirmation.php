@@ -15,5 +15,7 @@
                 }
             ?>
         </div>
+
+        <a href="index.php">Déconnexion</a>
     </body>
 </html>
