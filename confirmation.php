@@ -8,10 +8,10 @@
         <div id="container">
         <?php
                 session_start();
-                if($_SESSION['Login'] !== ""){
-                    $user = $_SESSION['Login'];
+                if($_SESSION['username'] !== ""){
+                    $username = $_SESSION['username'];
                     // afficher un message
-                    echo "Bonjour $user, vous êtes connecté";
+                    echo "Bonjour $username, vous êtes connecté";
                 }
             ?>
         </div>
