@@ -6,7 +6,7 @@
     </head>
     <body>
     <div id="container">
-        <form name="inscription" method="post" action="">
+        <form name="inscription" method="post">
         <h1>Inscription</h1>
             <label><b>Pseudo</b></label>
             <input type="text" placeholder="Entrer votre pseudo" name="pseudo" required>
