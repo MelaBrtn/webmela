@@ -15,7 +15,7 @@
             <input type="password" placeholder="Entrer votre mot de passe" name="password" required>
 
             <label><b>Confirmation de mot de passe</b></label>
-            <input type="password" placeholder="Confirmer votre mot de passe" name ="password" required>
+            <input type="password" placeholder="Confirmer votre mot de passe" name ="passwordConf" required>
 
             <label><b>Adresse email</b></label><br>
             <input type="mail" placeholder="Entrer votre email" name="mail" required>
@@ -23,7 +23,7 @@
             <input type="submit" id='submit' value='Inscription' >
 
             <?php
-                $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
+                $bdd = new mysqli('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
                 
                 if (isset($_POST['submit'])) {
                     if (empty($_POST['pseudo'])) {
@@ -43,6 +43,19 @@
                     $email = $_POST['mail'];
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
+                    // Vérifier que le pseudo n'existe pas
+                    $sql = "SELECT * FROM utilisateur WHERE pseudo='$pseudo' LIMIT 1";
+                    $result = mysqli_query($bdd, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        $errors['pseudo'] = "Ce pseudo existe déjà";
+                    }
+
+                    if (count($errors) === 0) {
+                        $query = "INSERT INTO utilisateur SET Login=?, password=?";
+                        $stmt = $bdd->prepare($query);
+                        $stmt->bind_param($pseudo, $password);
+                        $result = $stmt->execute();
+                    }
                 }
 
             ?>
