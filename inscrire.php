@@ -52,13 +52,15 @@
 
                     //SI IL N'EXISTE PAS ALORS ON INSERE DANS LA BDD
 
-                    if (count($errors) === 0) {
+                    if (count($errors) === 0) 
+                    {
                         $query = "INSERT INTO utilisateur SET Login=?, MotDePasse=?";
                         $stmt = $bdd->prepare($query);
                         $stmt->bind_param($pseudo, $password);
                         $result = $stmt->execute();
 
-                        if ($result) {
+                        if ($result) 
+                        {
                             $user_id = $stmt->insert_id;
                             $stmt->close();
 
@@ -69,7 +71,10 @@
                             $_SESSION['message'] = 'Vous êtes inscrit';
                             $_SESSION['type'] = 'alert-success';
                             header('location: index.php');
-                        } else {
+                        } 
+                        
+                        else 
+                        {
                             $_SESSION['error_msg'] = "Erreur l'enregistrement n'a pas abouti";
                         }
 
