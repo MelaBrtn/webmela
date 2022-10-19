@@ -25,22 +25,26 @@
             <?php
                 $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
                 
-                if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-                    $pseudo = $_POST['pseudo'];
-                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                
-                   // var_dump($pseudo);
-                    //var_dump($password);
-                
-                    $q = $bdd->prepare('INSERT INTO utilisateur (Login, MotDePasse) VALUES (:pseudo, :password)');
-                    $q->bindValue('Login', $pseudo);
-                    $q->bindValue('MotDePasse', $password);
-                    $res = execute($q);
-                
-                    if ($res) {
-                        echo "Inscription réussie";
+                if (isset($_POST['submit'])) {
+                    if (empty($_POST['pseudo'])) {
+                        $errors['pseudo'] = 'Un pseudo est exigé';
                     }
+                    if (empty($_POST['mail'])) {
+                        $errors['mail'] = 'Un email est exigé';
+                    }
+                    if (empty($_POST['password'])) {
+                        $errors['password'] = 'Un mot de passe est exigé';
+                    }
+                    if (isset($_POST['password']) && $_POST['password'] !== $_POST['passwordConf']) {
+                        $errors['passwordConf'] = 'Les deux mots de passe ne sont pas identiques';
+                    }
+
+                    $pseudo = $_POST['pseudo'];
+                    $email = $_POST['mail'];
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
+
                 }
+
             ?>
 
             <a href="index.php">Retour à la connexion</a>
