@@ -1,7 +1,10 @@
-<?php   
-session_start(); 
+<?php
 session_destroy();
-header('location: index.php');
+unset($_SESSION['id']);
+unset($_SESSION['username']);
+unset($_SESSION['email']);
+unset($_SESSION['verify']);
+header("location: login.php");
 exit;
 ?>
 
