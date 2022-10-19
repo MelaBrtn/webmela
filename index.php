@@ -17,7 +17,7 @@
                 <label><b>Mot de passe</b></label>
                 <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-                <input type="submit" id='submit' value='Connexion' >
+                <input type="submit" id='submitLogin' value='Connexion' >
 
                 <a href="inscrire.php">S'inscrire</a>
                 <?php
