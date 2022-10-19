@@ -44,17 +44,35 @@
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
                     // Vérifier que le pseudo n'existe pas
-                    $sql = "SELECT * FROM utilisateur WHERE pseudo='$pseudo' LIMIT 1";
+                    $sql = "SELECT * FROM utilisateur WHERE Login='$pseudo' LIMIT 1";
                     $result = mysqli_query($bdd, $sql);
                     if (mysqli_num_rows($result) > 0) {
-                        $errors['pseudo'] = "Ce pseudo existe déjà";
+                        $errors['Login'] = "Ce pseudo existe déjà";
                     }
 
+                    //SI IL N'EXISTE PAS ALORS ON INSERE DANS LA BDD
+
                     if (count($errors) === 0) {
-                        $query = "INSERT INTO utilisateur SET Login=?, password=?";
+                        $query = "INSERT INTO utilisateur SET Login=?, MotDePasse=?";
                         $stmt = $bdd->prepare($query);
                         $stmt->bind_param($pseudo, $password);
                         $result = $stmt->execute();
+
+                        if ($result) {
+                            $user_id = $stmt->insert_id;
+                            $stmt->close();
+
+
+                            $_SESSION['id'] = $user_id;
+                            $_SESSION['username'] = $username;
+                            $_SESSION['verified'] = false;
+                            $_SESSION['message'] = 'Vous êtes inscrit';
+                            $_SESSION['type'] = 'alert-success';
+                            header('location: index.php');
+                        } else {
+                            $_SESSION['error_msg'] = "Erreur l'enregistrement n'a pas abouti";
+                        }
+
                     }
                 }
 
