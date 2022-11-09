@@ -23,7 +23,7 @@
             <input type="submit" id='submit' value='Inscription' >
 
             <?php
-                $bdd = new mysqli('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
+                $bdd = new PDO('mysql:host=127.0.0.1;dbname=tpslam3versioning-mb', 'root', '');
                 
                 if (isset($_POST['submit'])) {
                     if (empty($_POST['pseudo'])) {
