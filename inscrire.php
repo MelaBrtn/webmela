@@ -44,17 +44,18 @@
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
                     // Vérifier que le pseudo n'existe pas
-                    $sql = "SELECT * FROM utilisateur WHERE Login='$pseudo' LIMIT 1";
-                    $result = PDO::query($sql);
-                    if (mysqli_num_rows($result) > 0) {
+                    $sql = $pdo->prepare ("SELECT * FROM utilisateur WHERE Login='$pseudo' LIMIT 1");
+                    $sql->execute(array($pseudo));
+                    $result = $sql->fetchAll();
+                    if (count($result) > 0) {
                         $errors['Login'] = "Ce pseudo existe déjà";
                     }
 
-                    //SI IL N'EXISTE PAS ALORS ON INSERE DANS LA BDD
-
+                    //S'IL N'EXISTE PAS ALORS ON INSERE DANS LA BDD
+                        
                     if (count($errors) === 0) 
                     {
-                        $query = "INSERT INTO utilisateur SET Login=?, MotDePasse=?";
+                        $ins = $pdo->prepare("INSERT INTO utilisateur SET Login=?, MotDePasse=?");
                         $stmt = $bdd->prepare($query);
                         $stmt->bind_param($pseudo, $password);
                         $result = $stmt->execute();
