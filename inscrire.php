@@ -45,7 +45,7 @@
 
                     // Vérifier que le pseudo n'existe pas
                     $sql = "SELECT * FROM utilisateur WHERE Login='$pseudo' LIMIT 1";
-                    $result = mysqli_query($bdd, $sql);
+                    $result = PDO::query($sql);
                     if (mysqli_num_rows($result) > 0) {
                         $errors['Login'] = "Ce pseudo existe déjà";
                     }
